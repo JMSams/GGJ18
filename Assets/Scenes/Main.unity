@@ -828,10 +828,7 @@ MonoBehaviour:
   spawnPosition: {fileID: 1262198952}
   stopPosition: {fileID: 2027701181}
   enemyPrefabs:
-  - name: Basic Enemy
-    enemyPrefab: {fileID: 114009266209447928, guid: 5834d76fbc8564b478b6f26ea0e9bbfc,
-      type: 2}
-    startingWave: 1
+  - {fileID: 11400000, guid: 13ae0849e65846e4c81c3b7f3dace84f, type: 2}
   gameInSession: 0
 --- !u!1 &1947058513
 GameObject:

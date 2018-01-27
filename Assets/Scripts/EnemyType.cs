@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace FallingSloth.GGJ18
 {
-    [Serializable]
-    public class EnemyType
+    [CreateAssetMenu(fileName = "NewEnemyType", menuName = "Enemy Type", order = 1)]
+    public class EnemyType : ScriptableObject
     {
-        public string name;
-
         public Enemy enemyPrefab;
 
         public int startingWave;

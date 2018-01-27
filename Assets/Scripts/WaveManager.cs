@@ -37,16 +37,6 @@ namespace FallingSloth.GGJ18
             }
         }
 
-        [HideInInspector]
-        public bool gameInSession = false;
-
-        RectTransform gameUI;
-
-        void Start()
-        {
-            gameUI = GameObject.Find("GameUI").transform as RectTransform;
-        }
-
         public void StartNewGame()
         {
             StartCoroutine(_StartNewGame());
@@ -60,8 +50,6 @@ namespace FallingSloth.GGJ18
 
             waveEnemyPrefabs = new List<EnemyType>();
             waveEnemies = new List<Enemy>();
-
-            gameInSession = true;
 
             StartNewWave();
         }
@@ -95,13 +83,7 @@ namespace FallingSloth.GGJ18
             {
                 Enemy tempEnemy = Instantiate<Enemy>(waveEnemyPrefabs[Random.Range(0, waveEnemyPrefabs.Count)].enemyPrefab);
                 tempEnemy.transform.position = spawnPosition.position;
-
-                HealthBar tempBar = Instantiate<HealthBar>(healthBarPrefab);
-                tempBar.transform.SetParent(gameUI, false);
-                tempBar.maxValue = tempEnemy.maxHealth;
-                tempBar.currentValue = tempEnemy.maxHealth;
-                tempEnemy.healthBar = tempBar;
-
+                
                 tempEnemy.maxPosition = stopPosition;
 
                 waveEnemies.Add(tempEnemy);
