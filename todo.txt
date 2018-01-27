@@ -1,0 +1,15 @@
+GGJ18 TODO:
+
+- Add at least two different weapons that can be used to injure enemies
+
+- End the wave when all enemies are defeated
+	- Show a menu between waves
+		- Make this an upgrade menu
+
+- Add at least two more enemy types
+
+- Refine spawn interval and enemy count
+
+- Show remaining enemy count on screen
+
+- Gain currency from defeating enemies/clearing waves
