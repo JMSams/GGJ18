@@ -14,6 +14,11 @@ namespace FallingSloth.GGJ18
 
         public float timeBetweenRounds = .1f;
 		
-		public float damagePerRound = 10f;
+		public int damagePerRound = 10;
+
+        public bool fullAuto = false;
+
+        [HideInInspector]
+        public int currentRounds = 7;
     }
 }

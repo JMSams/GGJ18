@@ -11,8 +11,6 @@ namespace FallingSloth.GGJ18
     {
         public Text currentWaveText;
 
-        public HealthBar healthBarPrefab;
-
         public Transform spawnPosition, stopPosition;
 
         int currentWave = 0;
@@ -21,6 +19,10 @@ namespace FallingSloth.GGJ18
         List<EnemyType> waveEnemyPrefabs;
 
         List<Enemy> waveEnemies;
+
+        public Animator interwaveScreen;
+
+        bool checkForWaveEnd = false;
 
         int waveEnemyCount
         {
@@ -37,15 +39,8 @@ namespace FallingSloth.GGJ18
             }
         }
 
-        public void StartNewGame()
+        void Start()
         {
-            StartCoroutine(_StartNewGame());
-        }
-
-        IEnumerator _StartNewGame()
-        {
-            yield return new WaitForSeconds(1.5f);
-
             currentWave = 0;
 
             waveEnemyPrefabs = new List<EnemyType>();
@@ -58,6 +53,8 @@ namespace FallingSloth.GGJ18
         {
             currentWave++;
 
+            currentWaveText.text = "Current Wave: " + currentWave;
+
             waveEnemyPrefabs.Clear();
             foreach (EnemyType e in enemyPrefabs)
             {
@@ -69,11 +66,22 @@ namespace FallingSloth.GGJ18
 
             StartCoroutine(SpawnEnemies());
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Starting wave " + currentWave);
-            sb.AppendLine("Enemy count: " + waveEnemyCount);
-            sb.Append("Spawn interval: " + waveSpawnInterval);
-            Debug.Log(sb);
+            checkForWaveEnd = true;
+        }
+
+        void Update()
+        {
+            if (checkForWaveEnd)
+            {
+                if (waveEnemies.Count < waveEnemyCount)
+                    return;
+
+                foreach (Enemy e in waveEnemies)
+                    if (e != null) return;
+
+                interwaveScreen.SetTrigger("Open");
+                checkForWaveEnd = false;
+            }
         }
 
         IEnumerator SpawnEnemies()

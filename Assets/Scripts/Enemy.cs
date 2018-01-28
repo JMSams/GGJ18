@@ -16,16 +16,22 @@ namespace FallingSloth.GGJ18
         public int currentHealth;
 
         public float speed;
+
+        Animator animator;
+
+        bool isDead = false;
+
+        void Start()
+        {
+            animator = GetComponent<Animator>();
+        }
         
         void Update()
         {
-            if (currentHealth <= 0)
+            if (!isDead)
             {
-                Destroy(gameObject);
-                return;
+                Move();
             }
-
-            Move();
         }
 
         void Move()
@@ -34,6 +40,22 @@ namespace FallingSloth.GGJ18
                 return;
             else
                 transform.Translate(Time.deltaTime * speed, 0f, 0f);
+        }
+
+        public void Hit(int damage)
+        {
+            currentHealth -= damage;
+
+            if (currentHealth <= 0)
+            {
+                isDead = true;
+                animator.SetTrigger("Died");
+            }
+        }
+
+        public void Destroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -1,5 +1,8 @@
 GGJ18 TODO:
 
+- Make enemies injure base
+	- Game over when they are defeated
+
 - Add at least two different weapons that can be used to injure enemies
 
 - End the wave when all enemies are defeated
@@ -8,8 +11,12 @@ GGJ18 TODO:
 
 - Add at least two more enemy types
 
+- Music & SFX
+
 - Refine spawn interval and enemy count
 
 - Show remaining enemy count on screen
 
 - Gain currency from defeating enemies/clearing waves
+
+- Local highscore
